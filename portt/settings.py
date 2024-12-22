@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-o)4j@a=^^=7p3tyg9omyht7&wf_ltkx-h6he9iya8w*nua=0sc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['asmaamo.pythonanywhere.com', 'localhost','127.0.0.1:8000','127.0.0.1' ]
 
 
 # Application definition
@@ -77,7 +78,7 @@ ROOT_URLCONF = 'portt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'meportfolio' / 'dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +96,6 @@ WSGI_APPLICATION = 'portt.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -151,12 +151,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'portt/static'),
+#     ]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'meportfolio' / 'dist',
+    ]
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# # 
+# import django_heroku
+# django_heroku.settings(locals())
 
-import django_heroku
-django_heroku.settings(locals())
+import sys
+
+path = '/home/asmaamo/port'
